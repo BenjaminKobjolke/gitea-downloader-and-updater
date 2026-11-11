@@ -63,16 +63,13 @@ class ProcessController:
         """Start detached with the captured args; return the pid once it stayed alive."""
         # Use the absolute exe: Popen resolves a relative argv[0] against *our* cwd.
         args = [str(process.exe), *process.cmdline[1:]]
-        flags = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
         try:
+            # Own visible console window, like a manual start; it outlives this tool.
             child = subprocess.Popen(
                 args,
                 cwd=process.cwd,
                 env=process.environ,
-                creationflags=flags,
-                stdin=subprocess.DEVNULL,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
+                creationflags=subprocess.CREATE_NEW_CONSOLE,
                 close_fds=True,
             )
         except OSError as error:
