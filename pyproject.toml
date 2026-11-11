@@ -1,0 +1,36 @@
+[project]
+name = "gitea-updater"
+version = "0.1.0"
+description = "Download the latest Gitea Windows release and swap it in for a running Gitea."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = ["psutil>=7.2.2"]
+
+[project.scripts]
+gitea-updater = "gitea_updater.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=9.2.0", "ruff>=0.17.4", "mypy>=2.4.1", "types-psutil>=7.2.2.20261111"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gitea_updater"]
+
+[tool.ruff]
+line-length = 100
+# ruff format rewrites Python blocks inside Markdown, which would mangle CODING_RULES.md.
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

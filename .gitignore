@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coding-rules.json
+graphify-out/
+src/graphify-out/
+claude-plans/*-delegate.log
+.claude/
+claude-plans/
+PLAN_*.md
+tmp/
