@@ -10,7 +10,8 @@ One run:
 4. stops the running Gitea (found by its exe path),
 5. moves the old exe to `backup_gitea\` next to it,
 6. puts the new exe in place **under the old file name**,
-7. starts Gitea again with the same command line, working dir and environment.
+7. starts Gitea again in its own console window with the same command line, working dir
+   and environment. Closing that window stops Gitea.
 
 If the new Gitea does not start, the old exe is put back and started again.
 
